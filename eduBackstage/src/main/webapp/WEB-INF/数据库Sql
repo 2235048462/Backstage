@@ -1,0 +1,411 @@
+
+
+
+
+
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : aliyun-sql
+Source Server Version : 50718
+Source Host           : rm-bp19kl63rw5t2e7ko6o.mysql.rds.aliyuncs.com:3306
+Source Database       : student
+
+Target Server Type    : MYSQL
+Target Server Version : 50718
+File Encoding         : 65001
+
+Date: 2018-04-04 09:32:03
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for c_dept
+-- ----------------------------
+DROP TABLE IF EXISTS c_dept;
+CREATE TABLE c_dept (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  DEPT_NAME varchar(30) DEFAULT NULL,
+  UPDATE_TIME datetime DEFAULT NULL,
+  CREATE_TIME datetime DEFAULT NULL,
+  commont varchar(50) DEFAULT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_dept
+-- ----------------------------
+INSERT INTO c_dept VALUES ('1', '人力资源部', null, null, null);
+INSERT INTO c_dept VALUES ('2', '就业部', null, null, null);
+INSERT INTO c_dept VALUES ('3', '教学部', null, null, null);
+INSERT INTO c_dept VALUES ('4', '学工部', null, null, null);
+INSERT INTO c_dept VALUES ('5', '咨询部', null, null, null);
+INSERT INTO c_dept VALUES ('6', '财务部', null, null, null);
+INSERT INTO c_dept VALUES ('7', '后勤服务部', null, null, null);
+INSERT INTO c_dept VALUES ('8', '销售部', null, null, null);
+INSERT INTO c_dept VALUES ('9', '总裁办', null, null, null);
+
+-- ----------------------------
+-- Table structure for c_function
+-- ----------------------------
+DROP TABLE IF EXISTS c_function;
+CREATE TABLE c_function (
+  ID int(11) NOT NULL AUTO_INCREMENT,
+  NAME varchar(255) DEFAULT NULL,
+  CODE varchar(255) DEFAULT NULL,
+  DESCRIPTION varchar(255) DEFAULT NULL,
+  PAGE varchar(255) DEFAULT NULL,
+  GENERATEMENU varchar(255) DEFAULT NULL,
+  ZINDEX int(11) DEFAULT NULL,
+  PID int(11) DEFAULT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_function
+-- ----------------------------
+INSERT INTO c_function VALUES ('1', '系统管理模块', 'admin', '系统管理模块', 'html_admin', '1', null, '0');
+INSERT INTO c_function VALUES ('2', '人力资源模块', 'hr', '人力资源模块', 'html_hr', '1', null, '0');
+INSERT INTO c_function VALUES ('11', '管理员页面', 'adminpage', '管理员页面', 'html_admin_listadmin.do', '1', null, '1');
+INSERT INTO c_function VALUES ('21', '部门页面', 'deptpage', '部门页面', 'html_hr_listdept.do', '1', null, '2');
+INSERT INTO c_function VALUES ('22', '职位页面', 'positionpage', '职位页面', 'html_hr_listposition.do', '1', null, '2');
+INSERT INTO c_function VALUES ('23', '员工页面', 'staffpage', '员工页面', 'html_hr_liststaff.do', '1', null, '2');
+INSERT INTO c_function VALUES ('111', '查询管理员', 'listadmin', '查询管理员', 'admin/list.do', '0', null, '11');
+INSERT INTO c_function VALUES ('112', '修改管理员', 'updateadmin', '修改管理员', 'admin/update.do', '0', null, '11');
+INSERT INTO c_function VALUES ('113', '解除管理员', 'unbindadmin', '解除管理员', 'admin/unbind.do', '0', null, '11');
+INSERT INTO c_function VALUES ('211', '查询部门', 'listdept', '查询部门', 'dept/list.do', '0', null, '21');
+INSERT INTO c_function VALUES ('212', '增加部门', 'adddept', '增加部门', 'dept/add.do', '0', null, '21');
+INSERT INTO c_function VALUES ('213', '删除部门', 'deldept', '删除部门', 'dept/del.do', '0', null, '21');
+INSERT INTO c_function VALUES ('214', '修改部门', 'updatedept', '修改部门', 'dept/update.do', '0', null, '21');
+INSERT INTO c_function VALUES ('221', '查询职位', 'listposition', '查询职位', 'position/list.do', '0', null, '22');
+INSERT INTO c_function VALUES ('222', '增加职位', 'addposition', '增加职位', 'position/add.do', '0', null, '22');
+INSERT INTO c_function VALUES ('223', '修改职位', 'updateposition', '修改职位', 'position/update.do', '0', null, '22');
+INSERT INTO c_function VALUES ('224', '删除职位', 'delposition', '删除职位', 'position/del.do', '0', null, '22');
+INSERT INTO c_function VALUES ('231', '查询员工', 'liststaff', '查询职位', 'staff/list.do', '0', null, '23');
+INSERT INTO c_function VALUES ('232', '增加员工', 'addstaff', '增加职位', 'staff/add.do', '0', null, '23');
+INSERT INTO c_function VALUES ('233', '修改员工', 'updatestaff', '修改职位', 'staff/update.do', '0', null, '23');
+INSERT INTO c_function VALUES ('234', '删除员工', 'delstaff', '删除职位', 'staff/del.do', '0', null, '23');
+
+-- ----------------------------
+-- Table structure for c_position
+-- ----------------------------
+DROP TABLE IF EXISTS c_position;
+CREATE TABLE c_position (
+  ID int(11) NOT NULL ,
+  DEPT_ID int(11) DEFAULT NULL,
+  DEPT_NAME varchar(30) DEFAULT NULL,
+  POSITION_NAME varchar(30) DEFAULT NULL,
+  update_time datetime DEFAULT NULL,
+  create_time datetime DEFAULT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_position
+-- ----------------------------
+INSERT INTO c_position VALUES ('1', '1', '人力资源部', '人力资源主管', null, null);
+INSERT INTO c_position VALUES ('2', '2', '就业部', '就业主管', null, null);
+INSERT INTO c_position VALUES ('3', '3', '教学部', '教学总监', null, null);
+INSERT INTO c_position VALUES ('4', '4', '学工部', '学工主任', null, null);
+INSERT INTO c_position VALUES ('5', '5', '咨询部', '咨询主管', null, null);
+INSERT INTO c_position VALUES ('6', '6', '财务部', '财务总监', null, null);
+INSERT INTO c_position VALUES ('7', '7', '后勤服务部', '后勤主任', null, null);
+INSERT INTO c_position VALUES ('8', '8', '销售部', '销售经理', null, null);
+INSERT INTO c_position VALUES ('9', '9', '总裁办', 'CEO', null, null);
+INSERT INTO c_position VALUES ('10', '1', '人力资源部', '人力资源专员', null, null);
+INSERT INTO c_position VALUES ('11', '2', '就业部', '就业指导', null, null);
+INSERT INTO c_position VALUES ('12', '3', '教学部', '讲师', null, null);
+INSERT INTO c_position VALUES ('13', '4', '学工部', '班主任', null, null);
+INSERT INTO c_position VALUES ('14', '5', '咨询部', '客服', null, null);
+INSERT INTO c_position VALUES ('15', '6', '财务部', '会计', null, null);
+
+-- ----------------------------
+-- Table structure for c_role
+-- ----------------------------
+DROP TABLE IF EXISTS c_role;
+CREATE TABLE c_role (
+  ID int(11) NOT NULL ,
+  NAME varchar(255) DEFAULT NULL,
+  CODE varchar(255) DEFAULT NULL,
+  DESCRIPTION varchar(255) DEFAULT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_role
+-- ----------------------------
+INSERT INTO c_role VALUES ('1', '全部系统管理员', 'sysadmin', '超级管理员');
+INSERT INTO c_role VALUES ('2', '人力资源系统管理员', 'hrmanager', '管理人力资源系统');
+INSERT INTO c_role VALUES ('3', '咨询系统管理员', 'zxmanager', '管理咨询部系统');
+INSERT INTO c_role VALUES ('4', '学工系统管理员', 'xgmanager', '管理学工部系统');
+INSERT INTO c_role VALUES ('5', '就业部系统管理员', 'jymanager', '管理就业系统');
+
+-- ----------------------------
+-- Table structure for c_role_function
+-- ----------------------------
+DROP TABLE IF EXISTS c_role_function;
+CREATE TABLE c_role_function (
+  ROLE_ID int(11) DEFAULT NULL ,
+  FUNCTION_ID int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_role_function
+-- ----------------------------
+INSERT INTO c_role_function VALUES ('2', '221');
+INSERT INTO c_role_function VALUES ('2', '224');
+INSERT INTO c_role_function VALUES ('2', '223');
+INSERT INTO c_role_function VALUES ('2', '213');
+INSERT INTO c_role_function VALUES ('2', '211');
+INSERT INTO c_role_function VALUES ('2', '212');
+INSERT INTO c_role_function VALUES ('2', '22');
+INSERT INTO c_role_function VALUES ('2', '222');
+INSERT INTO c_role_function VALUES ('2', '214');
+INSERT INTO c_role_function VALUES ('2', '21');
+INSERT INTO c_role_function VALUES ('2', '234');
+INSERT INTO c_role_function VALUES ('2', '233');
+INSERT INTO c_role_function VALUES ('2', '232');
+INSERT INTO c_role_function VALUES ('2', '231');
+INSERT INTO c_role_function VALUES ('2', '23');
+INSERT INTO c_role_function VALUES ('2', '2');
+INSERT INTO c_role_function VALUES ('1', '2');
+INSERT INTO c_role_function VALUES ('1', '23');
+INSERT INTO c_role_function VALUES ('1', '234');
+INSERT INTO c_role_function VALUES ('1', '233');
+INSERT INTO c_role_function VALUES ('1', '232');
+INSERT INTO c_role_function VALUES ('1', '231');
+INSERT INTO c_role_function VALUES ('1', '22');
+INSERT INTO c_role_function VALUES ('1', '221');
+INSERT INTO c_role_function VALUES ('1', '224');
+INSERT INTO c_role_function VALUES ('1', '223');
+INSERT INTO c_role_function VALUES ('1', '21');
+INSERT INTO c_role_function VALUES ('1', '214');
+INSERT INTO c_role_function VALUES ('1', '213');
+INSERT INTO c_role_function VALUES ('1', '212');
+INSERT INTO c_role_function VALUES ('1', '211');
+INSERT INTO c_role_function VALUES ('1', '1');
+INSERT INTO c_role_function VALUES ('1', '11');
+INSERT INTO c_role_function VALUES ('1', '113');
+INSERT INTO c_role_function VALUES ('1', '112');
+INSERT INTO c_role_function VALUES ('1', '111');
+
+-- ----------------------------
+-- Table structure for c_staff
+-- ----------------------------
+DROP TABLE IF EXISTS c_staff;
+CREATE TABLE c_staff (
+  ID int(11) NOT NULL ,
+  NAME varchar(30) DEFAULT NULL,
+  USERNAME varchar(30) DEFAULT NULL,
+  PASSWORD varchar(30) DEFAULT NULL,
+  SEX int(1) DEFAULT NULL,
+  BIRTHDAY timestamp NULL DEFAULT NULL,
+  ENTRY timestamp NULL DEFAULT NULL,
+  POSITION_ID int(11) DEFAULT NULL,
+  update_time datetime DEFAULT NULL,
+  create_time datetime DEFAULT NULL,
+  PRIMARY KEY (ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_staff
+-- ----------------------------
+INSERT INTO c_staff VALUES ('1', '任翔', 'renxiang', null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '1', null, null);
+INSERT INTO c_staff VALUES ('2', '张雄', 'zhangxiongfan', null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '2', null, null);
+INSERT INTO c_staff VALUES ('3', '彭峰', 'pengfeng', null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '3', null, null);
+INSERT INTO c_staff VALUES ('4', '俱朝旭', 'juchaoxu', null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '4', null, null);
+INSERT INTO c_staff VALUES ('5', '梁卓', 'liangzhuo ', null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '5', null, null);
+INSERT INTO c_staff VALUES ('6', '卢宝平', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '6', null, null);
+INSERT INTO c_staff VALUES ('7', '马赢', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '8', null, null);
+INSERT INTO c_staff VALUES ('8', '吴宁汉', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '9', null, null);
+INSERT INTO c_staff VALUES ('9', '赵翔', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '10', null, null);
+INSERT INTO c_staff VALUES ('10', '安志祥', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '7', null, null);
+INSERT INTO c_staff VALUES ('11', '肖遥', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '11', null, null);
+INSERT INTO c_staff VALUES ('12', '涨强伟', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '12', null, null);
+INSERT INTO c_staff VALUES ('13', '王贤', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '13', null, null);
+INSERT INTO c_staff VALUES ('14', '吕少一', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '14', null, null);
+INSERT INTO c_staff VALUES ('15', '张雪', null, null, '0', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '15', null, null);
+INSERT INTO c_staff VALUES ('16', '李兆南', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '16', null, null);
+INSERT INTO c_staff VALUES ('17', '李雪峰', null, null, '1', '1994-11-09 19:58:21.000000', '2017-11-07 19:58:55.000000', '17', null, null);
+
+-- ----------------------------
+-- Table structure for c_staff_role
+-- ----------------------------
+DROP TABLE IF EXISTS c_staff_role;
+CREATE TABLE c_staff_role (
+  STAFF_ID int(11) NOT NULL ,
+  ROLE_ID int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_staff_role
+-- ----------------------------
+INSERT INTO c_staff_role VALUES ('2', '2');
+INSERT INTO c_staff_role VALUES ('3', '3');
+INSERT INTO c_staff_role VALUES ('4', '4');
+INSERT INTO c_staff_role VALUES ('5', '5');
+INSERT INTO c_staff_role VALUES ('6', '1');
+INSERT INTO c_staff_role VALUES ('7', '2');
+INSERT INTO c_staff_role VALUES ('8', '3');
+INSERT INTO c_staff_role VALUES ('9', '4');
+INSERT INTO c_staff_role VALUES ('10', '5');
+*****************************
+
+              学工管理
+
+*****************************
+DROP TABLE IF EXISTS c_class;
+CREATE TABLE c_class (
+  cs_id int(11) NOT NULL AUTO_INCREMENT,
+  cs_code int(11) NOT NULL,
+  cs_name varchar(20) DEFAULT NULL,
+  cs_introduce varchar(200) DEFAULT NULL,
+  cs_num int(11) DEFAULT NULL,
+  cs_create_time datetime DEFAULT NULL,
+  cs_update_time datetime DEFAULT NULL,
+  cs_describe varchar(20) DEFAULT NULL,
+  PRIMARY KEY (cs_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# Data for table "c_class"
+#
+
+INSERT INTO c_class VALUES (1,1011,'七年级一班','实验班',30,'1986-08-28 09:35:50','1996-08-28 08:10:36',''),(2,1012,'七年级二班','普通班',40,'1986-08-28 09:35:50','1996-08-28 08:22:46',''),(3,1013,'七年级三班','普通班',40,'1986-08-28 09:35:50','1996-08-28 08:22:46',''),(4,1021,'八年级一班','实验班',20,'1986-08-28 09:35:50','1990-08-28 08:18:32',''),(5,1022,'八年级二班','普通班',35,'1986-08-28 09:35:50','1996-08-28 08:21:46',''),(6,1023,'八年级三班','普通班',35,'1986-08-28 09:35:50','1996-08-28 08:20:46',''),(7,1031,'九年级一班','实验班',20,'1986-08-28 09:35:50','1989-08-28 08:05:15',''),(8,1032,'九年级二班','普通班',32,'1986-08-28 09:35:50','1992-08-28 08:25:46',''),(9,1033,'九年级三班','普通班',32,'1986-08-28 09:35:50','1992-08-28 08:26:46','');
+
+#
+# Structure for table "c_class_course"
+#
+
+DROP TABLE IF EXISTS c_class_course;
+CREATE TABLE c_class_course (
+  ccs_id int DEFAULT NULL,
+  ccu_id int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+delete from c_class_course where ccu_id=11;
+#
+# Data for table "c_class_course"
+#
+
+INSERT INTO c_class_course VALUES (1,1),(1,2),(1,3),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),(1,11),(1,12),(2,1),(2,2),(2,3),(2,5),(2,6),(2,7),(2,8),(2,9),(2,10),(2,11),(2,12),(3,1),(3,2),(3,3),(3,5),(3,6),(3,7),(3,8),(3,9),(3,10),(3,11),(3,12),(4,1),(4,2),(4,3),(4,6),(4,7),(4,8),(4,9),(4,10),(5,1),(5,2),(5,3),(5,6),(5,7),(5,8),(5,9),(5,10),(6,1),(6,2),(6,3),(6,6),(6,7),(6,8),(6,9),(6,10),(7,1),(7,2),(7,3),(7,4),(7,6),(7,7),(7,8),(7,9),(7,10),(8,1),(8,2),(8,3),(8,4),(8,6),(8,7),(8,8),(8,9),(8,10),(9,1),(9,2),(9,3),(9,4),(9,6),(9,7),(9,8),(9,9),(9,10);
+
+#
+# Structure for table "c_course"
+#
+
+DROP TABLE IF EXISTS c_course;
+CREATE TABLE c_course (
+  cu_id int(11) NOT NULL AUTO_INCREMENT,
+  cu_code int(11) DEFAULT NULL,
+  cu_name varchar(30) DEFAULT NULL,
+  cu_start_date datetime DEFAULT NULL,
+  cu_class_time varchar(30) DEFAULT NULL,
+  cu_place varchar(40) DEFAULT NULL,
+  cu_teacher varchar(20) DEFAULT NULL,
+  PRIMARY KEY (cu_id)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "c_course"
+#
+
+INSERT INTO c_course VALUES (1,1001,'英语','2005-08-28 09:35:50','30','教一 D308','苗泽'),(2,1002,'语文','1995-08-19 08:45:56','40','教三 F206','崔诚'),(3,1003,'数学','1998-04-28 08:35:24','60','教一 B218','张娜'),(4,1004,'化学','2001-03-26 10:34:36','50','教二 D101','王涛'),(5,1005,'地理','2011-08-18 11:56:51','65','教一 B206','李凯'),(6,1006,'物理','2006-09-24 09:30:50','30','教四 E203','周丽'),(7,1007,'历史','2000-01-22 11:23:36','36','教一 A108','曾好'),(8,1008,'政治','2004-08-12 10:32:52','26','教三 C304','许天启'),(9,1009,'生物','2008-08-28 09:35:50','50','教二 D306','赵发'),(10,1010,'体育','2007-09-25 11:40:36','56','教一 A205','张秀珍'),(11,1011,'美术','2014-05-24 09:35:26','30','教二 B303','钱继'),(12,1012,'音乐','2003-02-28 10:26:30','20','教一 D102','吴时');
+**********************************
+DROP TABLE IF EXISTS c_exam;
+CREATE TABLE c_exam (
+  ce_id int(11) NOT NULL AUTO_INCREMENT,
+  cs_name varchar(30) DEFAULT NULL,
+  cu_name varchar(30) DEFAULT NULL,
+  ce_num int(11) DEFAULT NULL,
+  ce_time datetime DEFAULT NULL,
+  ce_place varchar(40) DEFAULT NULL,
+  ce_describe varchar(20) DEFAULT NULL,
+  PRIMARY KEY (ce_id)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "c_exam"
+#
+
+INSERT INTO c_exam VALUES (1,'七年级一班','语文',30,'2001-07-06 08:00:00','教二 D306',''),(2,'七年级二班','语文',30,'2001-07-06 08:00:00','教二 D307',''),(3,'七年级三班','语文',30,'2001-07-06 08:00:00','教二 D308','学号为1的学生缺考'),(4,'七年级一班','数学',30,'2001-07-06 02:00:00','教三 C206',''),(5,'七年级二班','数学',30,'2001-07-06 02:00:00','教三 C207',''),(6,'七年级三班','数学',30,'2001-07-06 02:00:00','教三 C204','学号为1的学生缺考'),(7,'七年级一班','英语',30,'2001-07-07 08:00:00','教二 B316',''),(8,'七年级二班','英语',30,'2001-07-07 08:00:00','教二 B312',''),(9,'七年级三班','英语',30,'2001-07-07 08:00:00','教二 B318','学号为1的学生缺考');
+************************************************
+
+//咨询表
+DROP TABLE IF EXISTS c_studentTable;
+create table c_studentTable(
+stuId int primary key auto_increment,
+stuName varchar(10),
+stuSex char(5),
+stuAge int,
+stuTel varchar(11),
+stuQQ varchar(10),
+stuAddress varchar(30),
+stuIntent varchar(50),
+stuStatus varchar(30),
+remark varchar(50)
+);
+insert into c_studentTable value(null,'张三','男',15,'138888','10001',
+'西安市雁塔区','JAVA','已报名','咨询中');
+insert into c_studentTable value(null,'李四','女',15,'138888','10002',
+'西安市雁塔区','JAVA','未报名','咨询中');
+insert into c_studentTable value(null,'王五','男',15,'138888','10003',
+'西安市雁塔区','JAVA','未报名','咨询中');
+insert into c_studentTable value(null,'赵六','女',15,'138888','10004',
+'西安市雁塔区','JAVA','已报名','咨询中');
+insert into c_studentTable value(null,'张三三','女',15,'138888','10005',
+'西安市雁塔区','JAVA','未报名','咨询中');
+insert into c_studentTable value(null,'李四四','男',15,'138888','10006',
+'西安市雁塔区','JAVA','已报名','咨询中');
+insert into c_studentTable value(null,'王五五','女',15,'138888','10007',
+'西安市雁塔区','JAVA','已报名','咨询中');
+insert into c_studentTable value(null,'赵六六','男',15,'138888','10008',
+'西安市雁塔区','JAVA','未报名','咨询中')
+
+
+//已上课
+DROP TABLE IF EXISTS c_student;
+CREATE TABLE c_student (
+  ID int primary key auto_increment,
+  XUNFEI int(11) NOT NULL,
+  ZHUANGTAI  varchar(50) NOT NULL,
+  LIUSHI varchar(50) DEFAULT NULL,
+  SID int(11) NOT NULL,
+  foreign key(SID) references c_studentTable(stuId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into c_student value(null,10000,'已毕业','正常',1);
+insert into c_student value(null,10000,'已毕业','流失',2);
+insert into c_student value(null,10000,'未毕业','流失',3);
+insert into c_student value(null,10000,'未毕业','正常',4);
+insert into c_student value(null,10000,'未毕业','流失',5);
+insert into c_student value(null,10000,'已毕业','流失',6);
+insert into c_student value(null,10000,'已毕业','流失',7);
+insert into c_student value(null,10000,'未毕业','流失',8);
+
+
+//面试
+DROP TABLE IF EXISTS mianshi;
+CREATE TABLE mianshi(
+   mianshi_id int primary key AUTO_INCREMENT,
+   ms_shijian date DEFAULT NULL,
+   ms_gongsi varchar(200) DEFAULT NULL,
+   ms_gongzi int(11) DEFAULT NULL,
+   ms_jieguo int(11) DEFAULT NULL,
+   ms_ID int(11) NOT NULL,
+   foreign key(ms_ID) references c_student(ID)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+#
+# Data for table "mianshi"
+#
+
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司1',11000,1,1);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司2',12000,0,2);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司3',13000,1,3);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司4',14000,0,4);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司5',15000,1,5);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司6',16000,0,6);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司7',17000,1,7);
+INSERT INTO mianshi VALUES (NULL,NULL,'测试公司8',18000,0,8);
+
