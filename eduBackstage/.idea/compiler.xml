@@ -9,8 +9,5 @@
         <module name="eduBackstage" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="eduBackstage" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
 </project>

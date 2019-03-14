@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+    <!--启动注解识别-->
+    <context:annotation-config/>
+    <!--用来对包进行扫描,解决了@Controller标识的类的bean的注入和使用-->
+    <context:component-scan base-package="com.edu.backstage.controller">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--添加注解驱动,使注解标注的类生效.用来匹配请求的Controller,当default-servlet-handler配置时,必须有该配置-->
+    <mvc:annotation-driven/>
+    <!--开通静态资源的访问,如果不访问静态资源,不用配置default-servlet-handler-->
+    <mvc:default-servlet-handler/>
+    <!--视图定位-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--指定视图路径前缀-->
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <!--指定视图路径后缀-->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
